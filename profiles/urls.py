@@ -8,5 +8,6 @@ urlpatterns = [
     path('register/', views.RegisterPage, name='register'),
     path('login/', views.LoginPage, name='login'),
     path('', views.index, name='home'),
+    path('message/', views.HelloApiView.as_view(), name='message')
     
 ]
