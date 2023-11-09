@@ -9,18 +9,11 @@
     <h1>Login</h1>
     <form method="POST" action="">
         {% csrf_token %}
-        <div class="row">
-            <div class="col">
-                <br>
-                {{field.username}}
-                {{field}}
-            </div>
-            <div class="col">
-                <br>
-                {{field.password}}
-                {{field}}
-            </div>
-        </div>
+        <input type="text" value="Username" name="username" placeholder="Username">
+        <input type="password" value="Password" name="password" placeholder="Password">
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
         <input type="submit" value="Continue">
     </form>
 </body>

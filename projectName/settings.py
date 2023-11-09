@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'profiles',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -120,7 +121,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# AUTH_USER_MODEL = 'profiles.UserProfile'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+    
