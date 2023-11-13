@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate, login, logout
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from profiles import serializers
+from rest_framework import status
 
 
 # Create your views here.
@@ -46,8 +48,32 @@ def index(request):
 
 
 class HelloApiView(APIView):
+    template_name =  'base.html'
+    serializer_class = serializers.HelloSerializer
 
     def get(self, request, format=None):
+        message = "Hello world"
+        return Response(message)
+    
+    def post(self, request):
+        
+        serializer = self.serializer_class(data=request.data)
 
-        return Response({'message': 'Hello World'})
+        if serializer.is_valid():
+            name = serializer.validated_data.get('name')
+            context = f"Hello {name}"
+            return Response({'context':context})
+        else:
+            return Response(
+                serializer.errors,
+                status=status.HTTP_400_BAD_REQUEST
+            )
+    def put(self, request, pk=None):
+        return Response({'method':"PUT"})
+    
+    def patch(self, request, pk=None):
+        return Response({"method":"PATCH"})
+    
+    def delete(self, request, pk=None):
+        return Response({'method':'DELETE'})
     
