@@ -7,15 +7,16 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from profiles import serializers
-from rest_framework import status
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 
 def LoginPage(request):
+
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        username = request.POST['username']
+        password = request.POST['password']
 
         user = authenticate(request, username=username, password=password)
 
@@ -23,7 +24,7 @@ def LoginPage(request):
             login(request, user)
             return redirect('home')
         else:
-            return messages.info(request, "Username or password is incorrect")
+            messages.error(request, "Username or password is incorrect")
             
     context = {}
     return render(request, 'login.html', context)
@@ -42,38 +43,46 @@ def RegisterPage(request):
 
     return render(request, 'register.html', context)
 
+
+def LogoutView(request):
+    logout(request)
+    return redirect('login')
+
+
+@login_required(login_url='login')
 def index(request):
     context ={}
     return render(request, 'base.html', context)
 
 
-class HelloApiView(APIView):
-    template_name =  'base.html'
-    serializer_class = serializers.HelloSerializer
+# class HelloApiView(APIView):
+#     template_name =  'base.html'
+#     serializer_class = serializers.HelloSerializer
 
-    def get(self, request, format=None):
-        message = "Hello world"
-        return Response(message)
+#     def get(self, request, format=None):
+#         message = "Hello world"
+#         return Response(message)
     
-    def post(self, request):
+#     def post(self, request):
         
-        serializer = self.serializer_class(data=request.data)
+#         serializer = self.serializer_class(data=request.data)
 
-        if serializer.is_valid():
-            name = serializer.validated_data.get('name')
-            context = f"Hello {name}"
-            return Response({'context':context})
-        else:
-            return Response(
-                serializer.errors,
-                status=status.HTTP_400_BAD_REQUEST
-            )
-    def put(self, request, pk=None):
-        return Response({'method':"PUT"})
+#         if serializer.is_valid():
+#             name = serializer.validated_data.get('name')
+#             context = f"Hello {name}"
+#             return Response({'context':context})
+#         else:
+#             return Response(
+#                 serializer.errors,
+#                 status=status.HTTP_400_BAD_REQUEST
+#             )
+#     def put(self, request, pk=None):
+#         return Response({'method':"PUT"})
     
-    def patch(self, request, pk=None):
-        return Response({"method":"PATCH"})
+#     def patch(self, request, pk=None):
+#         return Response({"method":"PATCH"})
     
-    def delete(self, request, pk=None):
-        return Response({'method':'DELETE'})
+#     def delete(self, request, pk=None):
+#         return Response({'method':'DELETE'})
     
+
