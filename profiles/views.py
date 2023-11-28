@@ -8,7 +8,8 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from profiles import serializers
 from django.contrib.auth.decorators import login_required
-
+from django.http import JsonResponse
+import requests
 
 # Create your views here.
 
@@ -53,6 +54,22 @@ def LogoutView(request):
 def index(request):
     context ={}
     return render(request, 'base.html', context)
+
+def Quran(request):
+
+    api_url = 'https://tanzil.net/#1:2'
+    
+
+    response = requests.get(api_url)
+    response.raise_for_status()
+    quranic_data = response.json()
+    context = JsonResponse({'quranic_verses': quranic_data})
+
+    return render(request, 'quran.html', context)
+
+def education(request):
+    context = {}
+    return render(request, "education.html", context)
 
 
 # class HelloApiView(APIView):

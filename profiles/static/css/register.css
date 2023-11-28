@@ -2,7 +2,7 @@
     
     display: flex;
     justify-content:space-around;
-    border: 10px solid black;
+    border: 10px solid rgb(174, 161, 161);
     height: 50vh;
     align-items: center;
     flex-wrap: wrap;

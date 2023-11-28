@@ -1,3 +1,13 @@
-body {
-    text-align: center;
+
+.card-group{
+    display: flex;
+    justify-content: center;
+}
+
+header p{
+    background-color: rgb(176, 176, 214);
+    padding: 10px;
+    border: solid red;
+    border-radius: 10px;
+
 }

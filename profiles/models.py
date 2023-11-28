@@ -48,6 +48,10 @@ from django.db import models
     
 #     def __str__(self):
 #         return self.email
+
+
+class QuranModel(models.Model):
+    text = models.CharField(max_length=1000)
         
 
 
