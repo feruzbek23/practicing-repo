@@ -55,15 +55,20 @@ def index(request):
     context ={}
     return render(request, 'base.html', context)
 
-def Quran(request):
+def Quran(request, api_url, filters):
 
-    api_url = 'https://tanzil.net/#1:2'
+    api_url = 'https://github.com/semarketir/quranjson/blob/master/source/surah/surah_2.json'
+    filters = {"name" : "al-Baqarah"}
+
+    response = requests.get(api_url, params=filters)
     
-
-    response = requests.get(api_url)
-    response.raise_for_status()
-    quranic_data = response.json()
-    context = JsonResponse({'quranic_verses': quranic_data})
+    if response.status_code == 200:
+        quranic_data = response.json()
+        return quranic_data
+    else:
+        print(f'Error{response.status_code}')
+    
+    context = Quran(request, api_url, filters)
 
     return render(request, 'quran.html', context)
 

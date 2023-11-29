@@ -11,7 +11,7 @@ urlpatterns = [
     path('logout/', views.LogoutView, name='logout'),
     path('quran/', views.Quran, name='quran'),
     path('education/', views.education, name='education'),
-    path('home/', views.home, name='home')
+ 
     # path('message/', views.HelloApiView.as_view(), name='message')
     
 ]
