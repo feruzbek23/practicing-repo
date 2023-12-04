@@ -7,8 +7,8 @@ from .models import *
 #         model = User
 #         fields = ['username', 'email', 'password1', 'password2']
 
-class QuranModelSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = QuranModel
-        feilds = '__all__'
+# class QuranModelSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = QuranModel
+#         feilds = '__all__'
 

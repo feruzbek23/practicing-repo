@@ -1,4 +1,8 @@
 from django.db import models
+from django.utils import timezone
+from django.contrib.auth.models import User
+
+
 # from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 # from django.contrib.auth.models import  BaseUserManager
 
@@ -50,8 +54,6 @@ from django.db import models
 #         return self.email
 
 
-class QuranModel(models.Model):
-    text = models.CharField(max_length=1000)
-        
+
 
 

@@ -72,9 +72,9 @@ def Quran(request, api_url, filters):
 
     return render(request, 'quran.html', context)
 
-def education(request):
-    context = {}
-    return render(request, "education.html", context)
+def home(request):
+    return render(request, 'home.html')
+
 
 
 # class HelloApiView(APIView):
