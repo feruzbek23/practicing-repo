@@ -1,4 +1,6 @@
 .env
 env
 pipfile
-pipfile.lock    
+pipfile.lock
+
+.cache
