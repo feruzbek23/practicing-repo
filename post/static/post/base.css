@@ -1,0 +1,7 @@
+.content-section{
+    display:block;
+    padding: 20px;
+    border: 5px solid black;
+    margin: left 50px right 40px;
+    float: right;
+}

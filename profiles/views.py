@@ -8,8 +8,8 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from profiles import serializers
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
-import requests
+from django.test import TestCase
+
 
 # Create your views here.
 
@@ -50,30 +50,11 @@ def LogoutView(request):
     return redirect('login')
 
 
-@login_required(login_url='login')
-def index(request):
-    context ={}
-    return render(request, 'base.html', context)
 
-def Quran(request, api_url, filters):
 
-    api_url = 'https://github.com/semarketir/quranjson/blob/master/source/surah/surah_2.json'
-    filters = {"name" : "al-Baqarah"}
 
-    response = requests.get(api_url, params=filters)
-    
-    if response.status_code == 200:
-        quranic_data = response.json()
-        return quranic_data
-    else:
-        print(f'Error{response.status_code}')
-    
-    context = Quran(request, api_url, filters)
 
-    return render(request, 'quran.html', context)
 
-def home(request):
-    return render(request, 'home.html')
 
 
 
